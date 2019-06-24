@@ -38,16 +38,19 @@ app.get('/scrape', function(req, res) {
 
     // Now, we grab every h2 within an article tag, and do the following:
     // eslint-disable-next-line no-unused-vars
-    $('.t_listing-title').each(function(i, element) {
+    $('.listing-wide__inner').each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-        .children('a')
+        .children('h2')
+        .text();
+      result.subhead = $(this)
+        .children('p')
         .text();
       result.link = $(this)
-        .children('a')
+        .children('h2').children('a')
         .attr('href');
 
       // Create a new Article using the `result` object built from scraping
