@@ -2,10 +2,17 @@ articleScraper = () => {
   $.ajax({
     method: 'GET',
     url: '/scrape',
-  });
+  }).done(location.reload());
+  
 };
 
+$('#scraperbtn').on('click', function(){
+  articleScraper();
+  alert('test');
+});
+
 articleRender = () => {
+  $('#articles').empty();
   $.getJSON('/articles', function(data) {
     // For each one
     for (var i = 0; i < 10; i++) {
@@ -16,8 +23,7 @@ articleRender = () => {
   });
 };
 
-articleScraper();
-$(document).ajaxComplete(articleRender());
+articleRender();
 
 // Whenever someone clicks a p tag
 $(document).on('click', '.article', function() {

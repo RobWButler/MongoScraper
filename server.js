@@ -24,6 +24,11 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static('public'));
 
+var exphbs = require('express-handlebars');
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/MongoDBScraper';
 
@@ -33,6 +38,10 @@ mongoose.connect(MONGODB_URI);
 // Routes
 
 // A GET route for scraping the echoJS website
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
 app.get('/scrape', function() {
   // First, we grab the body of the html with axios
   axios.get('https://blogs.scientificamerican.com/laelaps/').then(function(response) {
