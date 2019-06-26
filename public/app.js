@@ -8,7 +8,6 @@ articleScraper = () => {
 
 $('#scraperbtn').on('click', function(){
   articleScraper();
-  alert('test');
 });
 
 articleRender = () => {
@@ -17,7 +16,7 @@ articleRender = () => {
     // For each one
     for (var i = 0; i < 10; i++) {
       // Display the apropos information on the page
-      $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'>' + '<h5><a href=\'' + data[i].link + '\'>'
+      $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'' + 'data-toggle=\'modal\'' + 'data-target=\'#noteModal\'>' + '<h5><a href=\'' + data[i].link + '\'>'
       + data[i].title + '</a></h5>' + '<p>' + data[i].subhead + '</p>' + '</div>' + '<br />');
     }
   });
@@ -25,9 +24,15 @@ articleRender = () => {
 
 articleRender();
 
+
+
 // Whenever someone clicks a p tag
 $(document).on('click', '.article', function() {
   // Empty the notes from the note section
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus');
+  });
+
   $('#notes').empty();
   // Save the id from the p tag
   var thisId = $(this).attr('data-id');
@@ -43,11 +48,11 @@ $(document).on('click', '.article', function() {
       // The title of the article
       $('#notes').append('<h3>' + data.title + '</h3>');
       // An input to enter a new title
-      $('#notes').append('<input id=\'titleinput\' name=\'title\' >');
+      $('#notes').append('<input id=\'titleinput\' name=\'title\' placeholder=\'Author\'>');
       // A textarea to add a new note body
-      $('#notes').append('<textarea id=\'bodyinput\' name=\'body\'></textarea>');
+      $('#notes').append('<textarea id=\'bodyinput\' name=\'body\' placeholder=\'Note\'></textarea>');
       // A button to submit a new note, with the id of the article saved to it
-      $('#notes').append('<button data-id=\'' + data._id + '\' id=\'savenote\'>Save Note</button>');
+      $('#savenote').attr('data-id', data._id);
   
       // If there's a note in the article
       if (data.note) {
@@ -86,5 +91,8 @@ $(document).on('click', '#savenote', function() {
   // Also, remove the values entered in the input and textarea for note entry
   $('#titleinput').val('');
   $('#bodyinput').val('');
+  
+  $('#noteModal').modal('toggle');
+
 });
   
