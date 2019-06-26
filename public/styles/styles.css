@@ -6,7 +6,7 @@ body {
   display: inline-block;
   overflow: auto;
   height: flex;
-  background-color: white;
+  background-color: antiquewhite;
   border-image: url('../img/border.svg') 20 fill / 30px / 10px;
   border-radius: 10px;
   padding: 1rem;
@@ -47,6 +47,7 @@ a{
   border: 1pt solid black;
   border-radius: 2px;
   padding: 5pt;
+  background: rgba(255, 255, 255, 0.95)
 }
 
 .article:hover{
@@ -59,7 +60,7 @@ a{
 }
 
 @keyframes borderPulse{
-  0%, 100% {border: 2pt solid skyblue;}
+  0%, 100% {border: 2pt solid cornflowerblue;}
 
   25%, 75% { border: 2pt solid aqua;}
 
