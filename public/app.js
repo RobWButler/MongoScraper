@@ -44,7 +44,6 @@ $(document).on('click', '.article', function() {
   })
   // With that done, add the note information to the page
     .then(function(data) {
-      console.log(data);
       // The title of the article
       $('#notes').append('<h3>' + data.title + '</h3>');
       // An input to enter a new title

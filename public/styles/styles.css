@@ -7,6 +7,7 @@ body {
   overflow: auto;
   height: flex;
   background-color: white;
+  border-image: url('../img/border.svg') 20 fill / 30px / 10px;
   border-radius: 10px;
   padding: 1rem;
 }
@@ -25,9 +26,14 @@ textarea {
   font-size: 18px;
 }
 
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5, button{
   font-family: Cambria;
 }
+
+.modal-content{
+  background: linear-gradient(aliceblue, ghostwhite)
+}
+
 a{
   color:black!important;
 }
@@ -46,13 +52,22 @@ a{
 .article:hover{
   border-radius: 2px;
   padding: 5pt;
-  animation: borderPulse 2s linear infinite;
-  background: linear-gradient(aliceblue, ghostwhite);
+  animation: borderPulse 2s linear infinite, bgPulse 2s linear infinite;
+  background: linear-gradient(skyblue, ghostwhite);
+  background-size: 400% 400%;
   box-shadow: -1pt 1pt 0pt black
 }
 
 @keyframes borderPulse{
-  0%, 100% { border: 2pt solid skyblue;};
-  25%, 75% {  border: 2pt solid aqua;}
-  50% {  border: 2pt solid white;}
+  0%, 100% {border: 2pt solid skyblue;}
+
+  25%, 75% { border: 2pt solid aqua;}
+
+  50% { border: 2pt solid white;}
+}
+
+@keyframes bgPulse { 
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
 }
