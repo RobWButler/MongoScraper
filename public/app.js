@@ -16,8 +16,8 @@ articleRender = () => {
     // For each one
     for (var i = 0; i < 10; i++) {
       // Display the apropos information on the page
-      $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'' + 'data-toggle=\'modal\'' + 'data-target=\'#noteModal\'>' + '<h5><a href=\'' + data[i].link + '\'>'
-      + data[i].title + '</a></h5>' + '<p>' + data[i].subhead + '</p>' + '</div>' + '<br />');
+      $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'' + 'data-toggle=\'modal\'' + 'data-target=\'#noteModal\'>' + '<h4><a href=\'' + data[i].link + '\'>'
+      + data[i].title + '</a></h4>' + '<p>' + data[i].subhead + '</p>' + '</div>' + '<br />');
     }
   });
 };

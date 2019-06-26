@@ -5,7 +5,6 @@ body {
   margin: auto;
   display: inline-block;
   overflow: auto;
-  width: 60%;
   height: flex;
   background-color: white;
   border-radius: 10px;
@@ -15,7 +14,7 @@ body {
 textarea, input {
   display: block;
   width: 100%;
-  background-color: #FCF5C7;
+  background-color: white;
 }
 input {
   height: 36px;
@@ -31,11 +30,29 @@ h1, h2, h3, h4, h5{
 }
 a{
   color:black!important;
-  text-decoration: none!important
+}
+
+#logo{
+  filter: drop-shadow(-1pt 1pt 3pt black);
+  margin: auto;
 }
 
 .article{
   border: 1pt solid black;
   border-radius: 2px;
   padding: 5pt;
+}
+
+.article:hover{
+  border-radius: 2px;
+  padding: 5pt;
+  animation: borderPulse 2s linear infinite;
+  background: linear-gradient(aliceblue, ghostwhite);
+  box-shadow: -1pt 1pt 0pt black
+}
+
+@keyframes borderPulse{
+  0%, 100% { border: 2pt solid skyblue;};
+  25%, 75% {  border: 2pt solid aqua;}
+  50% {  border: 2pt solid white;}
 }
