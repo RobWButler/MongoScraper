@@ -1,14 +1,24 @@
-// Grab the articles as a json
-$.getJSON('/articles', function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'>' + '<h5><a href=\'' + data[i].link + '\'>'
-     + data[i].title + '</a></h5>' + '<p>' + data[i].subhead + '</p>' + '</div>' + '<br />');
-  }
-});
-  
-  
+articleScraper = () => {
+  $.ajax({
+    method: 'GET',
+    url: '/scrape',
+  });
+};
+
+articleRender = () => {
+  $.getJSON('/articles', function(data) {
+    // For each one
+    for (var i = 0; i < 10; i++) {
+      // Display the apropos information on the page
+      $('#articles').append('<div class=\'article\' data-id=\'' + data[i]._id + '\'>' + '<h5><a href=\'' + data[i].link + '\'>'
+      + data[i].title + '</a></h5>' + '<p>' + data[i].subhead + '</p>' + '</div>' + '<br />');
+    }
+  });
+};
+
+articleScraper();
+$(document).ajaxComplete(articleRender());
+
 // Whenever someone clicks a p tag
 $(document).on('click', '.article', function() {
   // Empty the notes from the note section

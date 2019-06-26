@@ -25,12 +25,15 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Connect to the Mongo DB
-mongoose.connect('mongodb://localhost/MongoDBScraper', { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
+
+mongoose.connect(MONGODB_URI);
+
 
 // Routes
 
 // A GET route for scraping the echoJS website
-app.get('/scrape', function(req, res) {
+app.get('/scrape', function() {
   // First, we grab the body of the html with axios
   axios.get('https://blogs.scientificamerican.com/laelaps/').then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -65,8 +68,6 @@ app.get('/scrape', function(req, res) {
         });
     });
 
-    // Send a message to the client
-    res.send('Scrape Complete');
   });
 });
 
